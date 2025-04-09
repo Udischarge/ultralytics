@@ -1,0 +1,20 @@
+# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+# path: /workspace/Outputs/yyh/Dataset/hit_uav/normal_yolo # dataset root dir
+# train: train/images # train images (relative to 'path')  6471 images
+# val: test_noisy/images # val images (relative to 'path')  548 images
+# val: val/images # val images (relative to 'path')  548 images
+train: /workspace/Outputs/xyj/DroneVehicle/yolo/val/images
+val: /workspace/Outputs/xyj/DroneVehicle/yolo/val/images
+
+nc: 5
+
+# Classes
+names:
+  0: cls0
+  1: cls1
+  2: cls2
+  3: cls3
+  4: cls4

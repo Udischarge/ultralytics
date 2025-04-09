@@ -203,6 +203,8 @@ class DetectionValidator(BaseValidator):
             # Predictions
             if self.args.single_cls:
                 pred[:, 5] = 0
+            # pred[:, 5] -= 1 # ! tmp
+
             predn = self._prepare_pred(pred, pbatch)
             stat["conf"] = predn[:, 4]
             stat["pred_cls"] = predn[:, 5]
