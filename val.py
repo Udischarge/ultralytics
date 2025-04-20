@@ -1,13 +1,13 @@
 from ultralytics import YOLO
 
 # 加载一个预训练的 YOLO11n 模型
-model = YOLO("/workspace/Outputs/yyh/yolo11/experiment250409/train5/weights/best.pt")
+model = YOLO("/workspace/Outputs/yyh/yolo11/experiment250419/train2/weights/best.pt")
 
 model.val(
-    data="/workspace/mtmct/ContionTrack/fork/ultralytics/ultralytics/cfg/custom/hit-uav.yaml",  # 数据集配置文件路径
+    data="/workspace/mtmct/ContionTrack/fork/ultralytics/ultralytics/cfg/custom/vtmot_wurenji0302.yaml",  # 数据集配置文件路径
     imgsz=640,  # 训练图像尺寸
     device=0,  # 运行设备（例如 'cpu', 0, [0,1,2,3]）
-    project="/workspace/Outputs/yyh/yolo11/experiment250409",  # 项目名称
+    project="/workspace/Outputs/yyh/yolo11/experiment250419",  # 项目名称
     amp=False,  # 是否使用自动混合精度
     cache=False,  # 是否使用缓存
 )
