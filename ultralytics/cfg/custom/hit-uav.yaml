@@ -6,15 +6,17 @@
 # train: train/images # train images (relative to 'path')  6471 images
 # val: test_noisy/images # val images (relative to 'path')  548 images
 # val: val/images # val images (relative to 'path')  548 images
-train: /workspace/Outputs/xyj/DroneVehicle/yolo/val/images
-val: /workspace/Outputs/xyj/DroneVehicle/yolo/val/images
+train: /workspace/Outputs/yyh/Datasets/hit_uav/normal_yolo/train
+val: /workspace/Outputs/yyh/Datasets/hit_uav/normal_yolo/test
 
 nc: 5
 
 # Classes
 names:
-  0: cls0
-  1: cls1
-  2: cls2
-  3: cls3
-  4: cls4
+  0: person
+  1: car
+  2: none
+  3: none
+  4: none
+
+

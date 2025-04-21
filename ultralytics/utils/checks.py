@@ -313,7 +313,8 @@ def check_font(font="Arial.ttf"):
 
     # Check USER_CONFIG_DIR
     name = Path(font).name
-    file = USER_CONFIG_DIR / name
+    # file = USER_CONFIG_DIR / name
+    file = Path("/workspace/mtmct/ContionTrack/fork/ultralytics/ultralytics/assets/Arial.ttf")
     if file.exists():
         return file
 

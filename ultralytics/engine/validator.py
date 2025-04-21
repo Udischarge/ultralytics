@@ -221,6 +221,10 @@ class BaseValidator:
             # Postprocess
             with dt[3]:
                 preds = self.postprocess(preds)
+                # # ! (250421 yyh): 类别标签转换
+                # for i, pred in enumerate(preds):
+                #         pred[:, 5] += 1
+
 
             self.update_metrics(preds, batch)
             if self.args.plots and batch_i < 3:
