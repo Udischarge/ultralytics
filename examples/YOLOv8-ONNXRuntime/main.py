@@ -259,14 +259,14 @@ class YOLOv8:
 if __name__ == "__main__":
     # Create an argument parser to handle command-line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="yolov8n.onnx", help="Input your ONNX model.")
-    parser.add_argument("--img", type=str, default=str(ASSETS / "bus.jpg"), help="Path to input image.")
+    parser.add_argument("--model", type=str, default="/workspace/Outputs/yyh/yolo11/onnxruntime/model_quantized.onnx", help="Input your ONNX model.")
+    parser.add_argument("--img", type=str, default="/workspace/Outputs/yyh/Datasets/wurenji0302_yolo/train/images/wurenji-0302-02_infrared_000001.jpg", help="Path to input image.")
     parser.add_argument("--conf-thres", type=float, default=0.5, help="Confidence threshold")
     parser.add_argument("--iou-thres", type=float, default=0.5, help="NMS IoU threshold")
     args = parser.parse_args()
 
     # Check the requirements and select the appropriate backend (CPU or GPU)
-    check_requirements("onnxruntime-gpu" if torch.cuda.is_available() else "onnxruntime")
+    # check_requirements("onnxruntime-gpu" if torch.cuda.is_available() else "onnxruntime")
 
     # Create an instance of the YOLOv8 class with the specified arguments
     detection = YOLOv8(args.model, args.img, args.conf_thres, args.iou_thres)

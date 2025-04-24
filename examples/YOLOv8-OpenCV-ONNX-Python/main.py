@@ -116,7 +116,8 @@ def main(onnx_model, input_image):
         )
 
     # Display the image with bounding boxes
-    cv2.imshow("image", original_image)
+    # cv2.imshow("image", original_image)
+    cv2.imwrite("/workspace/mtmct/ContionTrack/tmp/result.jpg", original_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
