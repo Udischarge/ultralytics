@@ -4,7 +4,7 @@ import argparse
 
 import cv2.dnn
 import numpy as np
-
+import time
 from ultralytics.utils import ASSETS, yaml_load
 from ultralytics.utils.checks import check_yaml
 
@@ -45,9 +45,13 @@ def main(onnx_model, input_image):
     """
     # Load the ONNX model
     model: cv2.dnn.Net = cv2.dnn.readNetFromONNX(onnx_model)
-
+    # model.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+    # model.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
     # Read the input image
+    t0 = time.time()
     original_image: np.ndarray = cv2.imread(input_image)
+    t1 = time.time()
+    print(f"Image read time: {t1 - t0:.4f} seconds")
     [height, width, _] = original_image.shape
 
     # Prepare a square image for inference
@@ -61,10 +65,12 @@ def main(onnx_model, input_image):
     # Preprocess the image and prepare blob for model
     blob = cv2.dnn.blobFromImage(image, scalefactor=1 / 255, size=(640, 640), swapRB=True)
     model.setInput(blob)
-
+    t2 = time.time()
     # Perform inference
     outputs = model.forward()
-
+    t3 = time.time()
+    print(f"Model inference time: {(t3 - t2)*1000} ms")
+    print(f"fps: {1 / (t3 - t2):.2f}")
     # Prepare output array
     outputs = np.array([cv2.transpose(outputs[0])])
     rows = outputs.shape[1]
@@ -126,7 +132,9 @@ def main(onnx_model, input_image):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", default="yolov8n.onnx", help="Input your ONNX model.")
-    parser.add_argument("--img", default=str(ASSETS / "bus.jpg"), help="Path to input image.")
+    parser.add_argument("--model", default="/workspace/Outputs/yyh/yolo11/experiment250421/train2/weights/best.onnx", help="Input your ONNX model.")
+    parser.add_argument("--img", default=str("/workspace/Outputs/yyh/Datasets/VTMOT/WURENJI0302/test/wurenji-0302-01/infrared/000008.jpg"), help="Path to input image.")
+    # parser.add_argument("--img_folder", default=str("/workspace/Outputs/yyh/Datasets/VTMOT/WURENJI0302/test/wurenji-0302-01/infrared"), help="Path to input image folder.")
+
     args = parser.parse_args()
     main(args.model, args.img)
